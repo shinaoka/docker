@@ -48,3 +48,11 @@ RUN git clone https://github.com/j-otsuki/pomerol2dcore.git && \
     mkdir pomerol2dcore.build && cd pomerol2dcore.build && \
     cmake -Dpomerol_DIR=/opt/pomerol -DCMAKE_INSTALL_PREFIX=/opt/pomerol2dcore ../pomerol2dcore && \
     make install
+
+# ALPS/CT-HYB-SEGMENT
+# Compilation error!
+#WORKDIR /root
+#RUN git clone https://github.com/ALPSCore/CT-HYB-SEGMENT.git && \
+    #mkdir CT-HYB-SEGMENT.build && cd CT-HYB-SEGMENT.build && \
+    #cmake -DCMAKE_INSTALL_PREFIX=/opt/CT-HYB-SEGMENT ../CT-HYB-SEGMENT && \
+    #make install -j 12
