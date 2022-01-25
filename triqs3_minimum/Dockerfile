@@ -8,6 +8,7 @@ RUN apt-get update && \
       triqs \
       triqs_dft_tools \
       gosu \
+      python3-pip \
       && \
     apt-get autoremove --purge -y && \
     apt-get autoclean -y && \

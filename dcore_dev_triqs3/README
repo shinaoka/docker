@@ -1,1 +1,1 @@
-docker build
+docker build . -t shinaoka/dcore_dev_triqs3
