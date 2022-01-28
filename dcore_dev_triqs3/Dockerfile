@@ -50,9 +50,17 @@ RUN git clone https://github.com/j-otsuki/pomerol2dcore.git && \
     make install
 
 # ALPS/CT-HYB-SEGMENT
-# Compilation error!
-#WORKDIR /root
-#RUN git clone https://github.com/ALPSCore/CT-HYB-SEGMENT.git && \
-    #mkdir CT-HYB-SEGMENT.build && cd CT-HYB-SEGMENT.build && \
-    #cmake -DCMAKE_INSTALL_PREFIX=/opt/CT-HYB-SEGMENT ../CT-HYB-SEGMENT && \
-    #make install -j 12
+WORKDIR /root
+RUN git clone https://github.com/ALPSCore/CT-HYB-SEGMENT.git && \
+    mkdir CT-HYB-SEGMENT.build && cd CT-HYB-SEGMENT.build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/CT-HYB-SEGMENT ../CT-HYB-SEGMENT && \
+    make install -j 12
+
+# Some common libraries
+RUN apt remove python3-terminado -y
+RUN pip3 install --upgrade pip setuptools
+RUN pip3 install \
+        terminado numpy scipy matplotlib ipykernel jupyterlab \
+        numpy scipy h5py!=2.10.0 toml dcorelib mpi4py matplotlib mypy pytest \
+        sphinx wild_sphinx_theme versioneer
+
