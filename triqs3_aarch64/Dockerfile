@@ -42,14 +42,6 @@ RUN apt-get update && \
     apt-get autoclean -y && \
     rm -rf /var/cache/apt/* /var/lib/apt/lists/*
 
-#RUN apt-get update && \
-    #apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      #python3-dev \
-      #&& \
-    #apt-get autoremove --purge -y && \
-    #apt-get autoclean -y && \
-    #rm -rf /var/cache/apt/* /var/lib/apt/lists/*
-
 # Install TRIQS
 WORKDIR /root
 RUN git clone -b unstable https://github.com/TRIQS/triqs.git --depth=1 triqs.src && \
@@ -61,10 +53,9 @@ RUN git clone -b unstable https://github.com/TRIQS/triqs.git --depth=1 triqs.src
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DBuild_Documentation=OFF \
     -DBuild_Tests=OFF \
-    ../triqs.src
-WORKDIR /root/triqs.build
-RUN make -j 6 install
-RUN ls -l /opt/triqs/share/triqs
+    ../triqs.src && \
+    make -j 6 install && \
+    cd .. && rm -rf *.build *.src
 
 
 # Install TRIQS/DFTTools
