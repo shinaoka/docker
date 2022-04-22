@@ -37,6 +37,7 @@ RUN apt-get update && \
       python3-mpi4py \
       python3-matplotlib \
       cmake \
+      curl \
       && \
     apt-get autoremove --purge -y && \
     apt-get autoclean -y && \
@@ -101,3 +102,8 @@ RUN . /opt/triqs/share/cpp2pyvars.sh && . /opt/triqs/share/triqsvars.sh && \
     cd .. && rm -rf *.build *.src
 
 RUN echo "source /opt/triqs/share/triqsvars.sh" >> /root/.bashrc
+
+RUN curl -OL https://github.com/issp-center-dev/HPhi/releases/download/v3.5.0/HPhi-3.5.0.tar.gz && \
+    tar zxvf HPhi-3.5.0.tar.gz && \
+    mkdir HPhi.build && cd HPhi.build && cmake ../HPhi-3.5.0/ -DCMAKE_INSTALL_PREFIX=/opt/HPhi && make install && \
+    echo "export PATH=/opt/HPhi/bin:$PATH" >> /root/.bashrc

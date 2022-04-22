@@ -32,6 +32,8 @@ RUN apt-get update && \
     sudo \
     libboost-dev \
     libboost-mpi-dev \
+    gnuplot \
+    ghostscript \
     && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
 
